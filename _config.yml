@@ -23,10 +23,9 @@ email: Look me up
 description: >- # this means to ignore newlines until "baseurl:"
   Things I wish I knew more about.
 domain: martyblaber.github.io
-baseurl: /blog # the subpath of your site, e.g. /blog
+baseurl: / # the subpath of your site, e.g. /blog
 url: https://martyblaber.github.io # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  martyblaber
 
 # Build settings
 theme: minima
