@@ -22,18 +22,18 @@ I started at [About Github pages and Jekyll][gj-about](reccommended reading for 
 
 The general gist of what I did (I have a windows machine):
 1. Start reading the [Creating][gj-create] guide above.
-  1. Realize I need to install Jekyll. [Install Jekyll for Windows][jekyll-install]
-    1. Realize I need ruby. Download and install the `Ruby+Devkit` version from [RubyInstaller Downloads][ruby-downloads]
-    2. Install [Jekyll][jekyll-install] amd [bundler][bundler] using gem (the package manager for ruby).
-    
-      In a *new* powershell or command prompt (needs to be new to make sure the system can find the newly installed *gem*)
-      
-      ```bash
-      gem install jekyll bundler
-      ```
-  2. Create a new repo *martyblaber.github.io*, so full path is https://github.com/martyblaber/martyblaber.github.io and create a blog folder. *Terrible Idea*
-    1. Spend hours trying to get this to work and finally give up and move everything to the root directory of the repo.
-      1. You can't use commands like `git mv blog/* ./ -k` in a command prompt or powershell because the `*` is not interpreted properly. Instead, use *git bash* to run `git mv blog/* ./ -k`. The `-k` is to ignore files that aren't being tracked. The leftover stuff in `blog/` can be removed with `rm -rf blog/*`. You should check if there's anything important in there before doing this!
+    1. Realize I need to install Jekyll. [Install Jekyll for Windows][jekyll-install]
+        1. Realize I need ruby. Download and install the `Ruby+Devkit` version from [RubyInstaller Downloads][ruby-downloads]
+        2. Install [Jekyll][jekyll-install] amd [bundler][bundler] using gem (the package manager for ruby).
+        
+          In a *new* powershell or command prompt (needs to be new to make sure the system can find the newly installed *gem*)
+          
+          ```bash
+          gem install jekyll bundler
+          ```
+    2. Create a new repo *martyblaber.github.io*, so full path is https://github.com/martyblaber/martyblaber.github.io and create a blog folder. *Terrible Idea*
+        1. Spend hours trying to get this to work and finally give up and move everything to the root directory of the repo.
+            1. You can't use commands like `git mv blog/* ./ -k` in a command prompt or powershell because the `*` is not interpreted properly. Instead, use *git bash* to run `git mv blog/* ./ -k`. The `-k` is to ignore files that aren't being tracked. The leftover stuff in `blog/` can be removed with `rm -rf blog/*`. You should check if there's anything important in there before doing this!
   3. Eventually, I had a working page. Time to install a theme. *Disaster*
     1. I couldn't get the `leap-day` theme to work based on the [theme guide on github][theme-github].
     2. One of the many issues I had with local debugging was jekyll / ruby 3 not having the right dependencies. So install webrick and add webrick to the gem file:
