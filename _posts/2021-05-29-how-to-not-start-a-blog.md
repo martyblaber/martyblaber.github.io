@@ -1,14 +1,15 @@
 ---
 layout: post
 title: "How to not start a blog."
-categories: junk
+categories: web
 author:
-- Bart Simpson
-- Nelson Mandela Muntz
+- Marty Blaber
 meta: "Springfield"
 ---
 
 A multi-day journey into failing at starting a blog.
+
+This is probably way too messy to be useful. I used it as a platform for figuring out how to use Github pages, Jekyll with the Minima theme, Mathjax, Collapsible code and some other bits and peices. 
 
 ## Choosing Github
 
@@ -22,52 +23,107 @@ I started at [About Github pages and Jekyll][gj-about](reccommended reading for 
 
 The general gist of what I did (I have a windows machine):
 1. Start reading the [Creating][gj-create] guide above.
-    1. Realize I need to install Jekyll. [Install Jekyll for Windows][jekyll-install]
-        1. Realize I need ruby. Download and install the `Ruby+Devkit` version from [RubyInstaller Downloads][ruby-downloads]
-        2. Install [Jekyll][jekyll-install] amd [bundler][bundler] using gem (the package manager for ruby).
-        
-          In a *new* powershell or command prompt (needs to be new to make sure the system can find the newly installed *gem*)
-          
-          ```bash
-          gem install jekyll bundler
-          ```
-    2. Create a new repo *martyblaber.github.io*, so full path is https://github.com/martyblaber/martyblaber.github.io and create a blog folder. *Terrible Idea*
-        - Spend hours trying to get this to work and finally give up and move everything to the root directory of the repo.
-            - You can't use commands like `git mv blog/* ./ -k` in a command prompt or powershell because the `*` is not interpreted properly. Instead, use *git bash* to run `git mv blog/* ./ -k`. The `-k` is to ignore files that aren't being tracked. The leftover stuff in `blog/` can be removed with `rm -rf blog/*`. You should check if there's anything important in there before doing this!
-    3. Eventually, I had a working page. Time to install a theme. *Disaster*
-        1. I couldn't get the `leap-day` theme to work based on the [theme guide on github][theme-github].
-        2. One of the many issues I had with local debugging was jekyll / ruby 3 not having the right dependencies. So install webrick and add webrick to the gem file:
-            
-            In a powershell or command prompt.
-            
-            ```bash
-            gem install webrick
-            ```
-
-            Add webrick to the end of the Gemfile.
-
-            ```ruby    
-            gem "webrick"
-            ```
-        3. Looking back on my gemfile. Maybe this whole problem was created by jekyll being commented out:
-        https://github.com/martyblaber/martyblaber.github.io/blob/broken-leap-day/Gemfile
-            ```ruby
-            # Happy Jekylling!
-            #gem "jekyll", "~> 4.2.2"*
-            # This is the default theme for new Jekyll sites. You may change this to anything you like.
-            #gem "minima", "~> 2.5"
-            gem "github-pages", group: :jekyll_plugins
-            # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
-            # uncomment the line below. To upgrade, run `bundle update github-pages`.
-            gem "github-pages", "~> 226", group: :jekyll_plugins
-            # If you have any plugins, put them here!
-            group :jekyll_plugins do
-                gem "jekyll-feed", "~> 0.12"
-            end
-            ```
+2. Realize I need to install Jekyll. [Install Jekyll for Windows][jekyll-install]
+    1. Realize I need ruby. Download and install the `Ruby+Devkit` version from [RubyInstaller Downloads][ruby-downloads]
+    2. Install [Jekyll][jekyll-install] amd [bundler][bundler] using gem (the package manager for ruby).
     
+        In a *new* powershell or command prompt (needs to be new to make sure the system can find the newly installed *gem*)
+        
+        ```bash
+        gem install jekyll bundler
+        ```
+3. Create a new repo *martyblaber.github.io*, so full path is https://github.com/martyblaber/martyblaber.github.io and create a blog folder. *Terrible Idea*
+    - Spend hours trying to get this to work and finally give up and move everything to the root directory of the repo.
+        - You can't use commands like `git mv blog/* ./ -k` in a command prompt or powershell because the `*` is not interpreted properly. Instead, use *git bash* to run `git mv blog/* ./ -k`. The `-k` is to ignore files that aren't being tracked. The leftover stuff in `blog/` can be removed with `rm -rf blog/*`. You should check if there's anything important in there before doing this!
+4. Eventually, I had a working page. Time to install a theme. *Disaster*
+    1. I couldn't get the `leap-day` theme to work based on the [theme guide on github][theme-github].
+    2. One of the many issues I had with local debugging was jekyll / ruby 3 not having the right dependencies. So install webrick and add webrick to the gem file:
 
-### What do do instead (h3)
+        In a powershell or command prompt.
+        
+        ```bash
+        gem install webrick
+        ```
+
+        Add webrick to the end of the Gemfile.
+
+        ```ruby    
+        gem "webrick"
+        ```
+    3. Looking back on my gemfile. Maybe this whole problem was created by jekyll being commented out:
+    <https://github.com/martyblaber/martyblaber.github.io/blob/broken-leap-day/Gemfile>
+        ```ruby
+        # Happy Jekylling!
+        #gem "jekyll", "~> 4.2.2"*
+        # This is the default theme for new Jekyll sites. You may change this to anything you like.
+        #gem "minima", "~> 2.5"
+        gem "github-pages", group: :jekyll_plugins
+        # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
+        # uncomment the line below. To upgrade, run `bundle update github-pages`.
+        gem "github-pages", "~> 226", group: :jekyll_plugins
+        # If you have any plugins, put them here!
+        group :jekyll_plugins do
+            gem "jekyll-feed", "~> 0.12"
+        end
+        ```
+
+### What do do instead
+
+1. Give up on trying to follow the github guide and follow a different guide. <em>[Creating a Mathematics Blog with Jekyll][jekyll-math]</em>
+    1. Move the whole site into a new branch called broken-leap-day and wipe the main branch clean.
+
+        ```bash
+        #In Git Bash:
+        #Create a new branch and commit it.
+        cd ./martyblaber.github.io/
+        git branch -m broken-leap-day
+        git commit -m "New branch in case this all fails"
+        git push
+
+        #Back to the main branch
+        git checkout main
+        git rm -rf *
+        # If you see "fatal: pathspec '_site' did not match any files"
+        # then run rm -r _site to delete and redo the git rm -rf * until there are no errors.
+
+        cd ..
+        #Working Dir is now ~/code/
+        git clone https://github.com/jekyll/minima.git
+        cp ./minima/* ./martyblaber.github.io/
+        cd ./martyblaber.github.io/
+        git add *
+        git commit -m "Copy of the Minima theme"
+        git push 
+        ```
+
+#### Modifying Default Paragraph spacing.
+The original `spacing-unit`, is defined in `./_sass/minima/initialize.scss` and is used to define the margins between paragraphs"
+```scss
+$spacing-unit:     30px !default; //default will not overwrite the variable if it has already been defined. If spacing-unit is undefined when this code runs, then it will be assigned the value 30px.
+```
+The block above is read before the `custom-variables.scss` code, and we can overwrite the `spacing-unit` by removing the `!default` keyword from <https://github.com/martyblaber/martyblaber.github.io/_sass/minima/custom-variables.scss>:
+```scss
+@charset "utf-8";
+
+// Placeholder to allow overriding predefined variables smoothly.
+$spacing-unit:     20px;
+```
+
+I also added some extra spacing info to the list format in <https://github.com/martyblaber/martyblaber.github.io/_sass/minima/custom-styles.scss>
+```scss
+// Placeholder to allow defining custom styles that override everything else.
+// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+
+// Override spacing of lists
+
+li {
+    > ul,
+    > ol {
+      margin-top: $spacing-unit/3;
+      margin-bottom: 0;
+    }
+  }
+```
 
 
 Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
@@ -102,3 +158,4 @@ Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin con
 [ruby-downloads]: https://rubyinstaller.org/downloads/
 [bundler]:        https://bundler.io/
 [theme-github]:   https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
+[jekyll-math]: https://medium.com/coffee-in-a-klein-bottle/creating-a-mathematics-blog-with-jekyll-78cdee0339f3
