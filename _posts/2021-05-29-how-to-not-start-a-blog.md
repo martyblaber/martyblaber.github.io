@@ -24,24 +24,48 @@ The general gist of what I did (I have a windows machine):
 1. Start reading the [Creating][gj-create] guide above.
   1. Realize I need to install Jekyll. [Install Jekyll for Windows][jekyll-install]
     1. Realize I need ruby. Download and install the `Ruby+Devkit` version from [RubyInstaller Downloads][ruby-downloads]
-    2. Install [bundler][https://bundler.io/] and webrick by using gem (the package manager for ruby).
+    2. Install [Jekyll][jekyll-install] amd [bundler][bundler] using gem (the package manager for ruby).
     
-      In a powershell or command prompt.
+      In a *new* powershell or command prompt (needs to be new to make sure the system can find the newly installed *gem*)
       
       ```bash
-gem install bundler webrick
-```
-    3. Try to get jekyll to work and realize that the latest ruby doesn't play nicely with the dependencies, install webrick and add webrick to the gem file:
-    ```bash    
-gem "webrick"
+      gem install jekyll bundler
+      ```
+  2. Create a new repo *martyblaber.github.io*, so full path is https://github.com/martyblaber/martyblaber.github.io and create a blog folder. *Terrible Idea*
+    1. Spend hours trying to get this to work and finally give up and move everything to the root directory of the repo.
+      1. You can't use commands like `git mv blog/* ./ -k` in a command prompt or powershell because the `*` is not interpreted properly. Instead, use *git bash* to run `git mv blog/* ./ -k`. The `-k` is to ignore files that aren't being tracked. The leftover stuff in `blog/` can be removed with `rm -rf blog/*`. You should check if there's anything important in there before doing this!
+  3. Eventually, I had a working page. Time to install a theme. *Disaster*
+    1. I couldn't get the `leap-day` theme to work based on the [theme guide on github][theme-github].
+    2. One of the many issues I had with local debugging was jekyll / ruby 3 not having the right dependencies. So install webrick and add webrick to the gem file:
+    
+    In a powershell or command prompt.
+    
+    ```bash
+    gem install webrick
+    ```
+
+    Add webrick to the end of the Gemfile.
+
+    ```ruby    
+    gem "webrick"
+    ```
+    3. Looking back on my gemfile. Maybe this whole problem was created by jekyll being commented out:
+    https://github.com/martyblaber/martyblaber.github.io/blob/broken-leap-day/Gemfile
+    ```ruby
+    # Happy Jekylling!
+    #gem "jekyll", "~> 4.2.2"*
+    # This is the default theme for new Jekyll sites. You may change this to anything you like.
+    #gem "minima", "~> 2.5"
+    gem "github-pages", group: :jekyll_plugins
+    # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
+    # uncomment the line below. To upgrade, run `bundle update github-pages`.
+    gem "github-pages", "~> 226", group: :jekyll_plugins
+    # If you have any plugins, put them here!
+    group :jekyll_plugins do
+      gem "jekyll-feed", "~> 0.12"
+    end
     ```
   
- for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[gj-about]:    https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll
-[gj-create]:   https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
-[jekyll-install]: https://jekyllrb.com/docs/installation/windows/
-[ruby-downloads]: https://rubyinstaller.org/downloads/
 
 ### What do do instead (h3)
 
@@ -71,67 +95,10 @@ Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin con
 ```
 
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
 
-#### You might want a sub-subheading (h4)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-#### But it's probably overkill (h4)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-##### Could be a smaller sub-heading, `pacman` (h5)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-###### Small yet significant sub-heading  (h6)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-### Oh hai, an unordered list!!
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-- First item, yo
-- Second item, dawg
-- Third item, what what?!
-- Fourth item, fo sheezy my neezy
-
-### Oh hai, an ordered list!!
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-1. First item, yo
-2. Second item, dawg
-3. Third item, what what?!
-4. Fourth item, fo sheezy my neezy
-
-
-
-## Headings are cool! (h2)
-
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
-
-### Tables
-
-Title 1               | Title 2               | Title 3               | Title 4
---------------------- | --------------------- | --------------------- | ---------------------
-lorem                 | lorem ipsum           | lorem ipsum dolor     | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-
-
-Title 1 | Title 2 | Title 3 | Title 4
---- | --- | --- | ---
-lorem | lorem ipsum | lorem ipsum dolor | lorem ipsum dolor sit
-lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur | lorem ipsum dolor sit amet | lorem ipsum dolor sit
-lorem ipsum dolor | lorem ipsum | lorem | lorem ipsum
-lorem ipsum dolor | lorem ipsum dolor sit | lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur
+[gj-about]:    https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll
+[gj-create]:   https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll
+[jekyll-install]: https://jekyllrb.com/docs/installation/windows/
+[ruby-downloads]: https://rubyinstaller.org/downloads/
+[bundler]:        https://bundler.io/
+[theme-github]:   https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
