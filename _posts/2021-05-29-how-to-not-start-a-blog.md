@@ -34,38 +34,38 @@ The general gist of what I did (I have a windows machine):
     2. Create a new repo *martyblaber.github.io*, so full path is https://github.com/martyblaber/martyblaber.github.io and create a blog folder. *Terrible Idea*
         1. Spend hours trying to get this to work and finally give up and move everything to the root directory of the repo.
             1. You can't use commands like `git mv blog/* ./ -k` in a command prompt or powershell because the `*` is not interpreted properly. Instead, use *git bash* to run `git mv blog/* ./ -k`. The `-k` is to ignore files that aren't being tracked. The leftover stuff in `blog/` can be removed with `rm -rf blog/*`. You should check if there's anything important in there before doing this!
-  3. Eventually, I had a working page. Time to install a theme. *Disaster*
-    1. I couldn't get the `leap-day` theme to work based on the [theme guide on github][theme-github].
-    2. One of the many issues I had with local debugging was jekyll / ruby 3 not having the right dependencies. So install webrick and add webrick to the gem file:
-    
-    In a powershell or command prompt.
-    
-    ```bash
-    gem install webrick
-    ```
+    3. Eventually, I had a working page. Time to install a theme. *Disaster*
+        1. I couldn't get the `leap-day` theme to work based on the [theme guide on github][theme-github].
+        2. One of the many issues I had with local debugging was jekyll / ruby 3 not having the right dependencies. So install webrick and add webrick to the gem file:
+          
+        In a powershell or command prompt.
+        
+        ```bash
+        gem install webrick
+        ```
 
-    Add webrick to the end of the Gemfile.
+          Add webrick to the end of the Gemfile.
 
-    ```ruby    
-    gem "webrick"
-    ```
-    3. Looking back on my gemfile. Maybe this whole problem was created by jekyll being commented out:
-    https://github.com/martyblaber/martyblaber.github.io/blob/broken-leap-day/Gemfile
-    ```ruby
-    # Happy Jekylling!
-    #gem "jekyll", "~> 4.2.2"*
-    # This is the default theme for new Jekyll sites. You may change this to anything you like.
-    #gem "minima", "~> 2.5"
-    gem "github-pages", group: :jekyll_plugins
-    # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
-    # uncomment the line below. To upgrade, run `bundle update github-pages`.
-    gem "github-pages", "~> 226", group: :jekyll_plugins
-    # If you have any plugins, put them here!
-    group :jekyll_plugins do
-      gem "jekyll-feed", "~> 0.12"
-    end
-    ```
-  
+          ```ruby    
+          gem "webrick"
+          ```
+        3. Looking back on my gemfile. Maybe this whole problem was created by jekyll being commented out:
+        https://github.com/martyblaber/martyblaber.github.io/blob/broken-leap-day/Gemfile
+          ```ruby
+          # Happy Jekylling!
+          #gem "jekyll", "~> 4.2.2"*
+          # This is the default theme for new Jekyll sites. You may change this to anything you like.
+          #gem "minima", "~> 2.5"
+          gem "github-pages", group: :jekyll_plugins
+          # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
+          # uncomment the line below. To upgrade, run `bundle update github-pages`.
+          gem "github-pages", "~> 226", group: :jekyll_plugins
+          # If you have any plugins, put them here!
+          group :jekyll_plugins do
+            gem "jekyll-feed", "~> 0.12"
+          end
+          ```
+    
 
 ### What do do instead (h3)
 
