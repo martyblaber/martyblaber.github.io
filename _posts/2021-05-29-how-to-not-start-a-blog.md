@@ -96,7 +96,23 @@ The general gist of what I did (I have a windows machine):
         git push 
         ```
 
-#### Modifying Default Paragraph spacing.
+#### Quick aside on looking up command history in command prompt, powershell and bash or git bash.
+- For Command Prompt, use `doskey /history`. Here is some of the trash that I recently typed into a command prompt.
+    ```bat
+    cd code
+    ks
+    ls
+    dir
+    cd martyblaber.github.io
+    bundle
+    N
+    bundle install
+    bundle exec jekyll serve
+    ```
+- For Powershell, use `history`
+- For Bash / Git Bash, use `history`
+
+#### Modifying Default Paragraph spacing (and the list spacing)
 The original `spacing-unit`, is defined in `./_sass/minima/initialize.scss` and is used to define the margins between paragraphs"
 ```scss
 $spacing-unit:     30px !default; //default will not overwrite the variable if it has already been defined. If spacing-unit is undefined when this code runs, then it will be assigned the value 30px.
@@ -125,8 +141,33 @@ li {
   }
 ```
 
+### Change the default date format.
+As a British Australian American, I dislike all date formats. I have no idea if 5/29 means it's May 29 or Nonicosuary 5 (Nonicos is the [IUPAC prefix](https://files.eric.ed.gov/fulltext/ED611724.pdf) for 29 of something. I had trouble deciding between -uary (like January) or -ember, -ober, etc. Anyway, Nonicosuary is now the totally legit name for the 29th month.)
 
-Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
+So, I used the info [here](https://shopify.github.io/liquid/filters/date/) to update the date format in `_config.yaml` to be YYYY.MM.DD. Biggest to smallest. Files can now be sorted alphanumerically by date. Americans don't get confused by the day first thing and everyone else in the world can follow the biggest to smallest thing. Woop.
+```yaml
+# Minima date format
+# refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
+minima:
+  date_format: "%Y.%m.%d"
+```
+
+### Add Collapsible Segments
+
+<https://gist.github.com/joyrexus/16041f2426450e73f5df9391f7f7ae5f>
+<details><summary>CLICK ME</summary>
+<p>
+
+#### yes, even hidden code blocks!
+
+```python
+print("hello world!")
+```
+
+</p>
+</details>
+
+
 
 ### Some great subheading (h3)
 
