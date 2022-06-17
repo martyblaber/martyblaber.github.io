@@ -55,6 +55,14 @@ minima:
 # Build settings
 theme: minima
 
+markdown:    kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
