@@ -7,6 +7,6 @@
 #
 layout: home
 ---
-# [Blog Post Ideas](/ideas/)
+
 ***
 # Posts
