@@ -6,7 +6,7 @@
   border-bottom: 1px solid $border-color-01;
   min-height: $spacing-unit * 1.865;
   line-height: $base-line-height * $base-font-size * 2.25;
-
+  background-color: $site-header-bg-color;
   // Positioning context for the mobile navigation icon
   position: relative;
 }
@@ -203,6 +203,7 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1 0 auto;
+  //background-color: $background-color; //Putting this here changes the sides of the page too.
 }
 
 .page-heading {
@@ -239,10 +240,12 @@
  */
 .post-header {
   margin-bottom: $spacing-unit;
+  //background-color: $post-header-background-color;
 }
 
 .post-title,
 .post-content h1 {
+  
   @include relative-font-size(2.625);
   letter-spacing: -1px;
   line-height: 1.15;
@@ -254,6 +257,7 @@
 
 .post-content {
   margin-bottom: $spacing-unit;
+  //background-color: $post-content-color; //This doesn't work. It gets overwritten by the .wrapper
 
   h1, h2, h3 { margin-top: $spacing-unit * 2 }
   h4, h5, h6 { margin-top: $spacing-unit }

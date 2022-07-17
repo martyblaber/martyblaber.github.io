@@ -279,9 +279,18 @@ And it looks like so:
 
 ![What the collapsible markdown should look like](/assets/images/2022-06-03 06_22_23-collapsible markdown.png){: height="205px" width="auto" .imagebox}
 
-## MathML
+## MathJAX
 
-OK, final step is to try and add MathML
+OK, final step is to try and add MathJAX. Again, following the [guide](https://medium.com/coffee-in-a-klein-bottle/creating-a-mathematics-blog-with-jekyll-78cdee0339f3) by [Davis Barreira](https://medium.com/@davisbarreira), I added the following two lines to the botom of `_layouts/default.html`. 
+
+~~~html
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+~~~
+
+And now the site will render the mathjax markdown `$$ x = y^2 $$` as $$ x = y^2 $$. Woop!
+
+
 
 
 [gj-about]:    https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll

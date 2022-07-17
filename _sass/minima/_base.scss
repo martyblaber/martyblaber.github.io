@@ -21,7 +21,9 @@ dl, dd, ol, ul, figure {
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: $text-color;
-  background-color: $background-color;
+  //background-color: $background-color;
+  //background: url(../images/body-background-.png) #eae6d1;
+  background: url(../images/body-background-grayblue.png) #797b80;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
      -moz-font-feature-settings: "kern" 1;
@@ -59,7 +61,6 @@ main {
 }
 
 
-
 /**
  * Images
  */
@@ -67,8 +68,6 @@ img {
   max-width: 100%;
   vertical-align: middle;
 }
-
-
 
 /**
  * Figures
@@ -162,6 +161,7 @@ pre,
 code {
   font-family: $code-font-family;
   font-size: 0.9375em;
+  color: $code-text-color;
   border: 1px solid $border-color-01;
   border-radius: 3px;
   background-color: $code-background-color;
@@ -197,12 +197,14 @@ pre {
 /**
  * Wrapper
  */
-.wrapper {
+.wrapper,.site-header-wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
   margin-right: auto;
   margin-left: auto;
   padding-right: $spacing-unit / 2;
   padding-left: $spacing-unit / 2;
+  background-color: $post-background-color;
+
   @extend %clearfix;
 
   @media screen and (min-width: $on-large) {
@@ -212,7 +214,9 @@ pre {
   }
 }
 
-
+.site-header-wrapper {
+  background-color: $site-header-bg-color;
+}
 
 /**
  * Clearfix
